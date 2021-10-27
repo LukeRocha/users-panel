@@ -17,7 +17,7 @@ const Title = styled.h1`
 const Header = () => {
   return (
     <HeaderContainer>
-      <Title>Users</Title>
+      <Title>LOGO</Title>
     </HeaderContainer>
   );
 };
