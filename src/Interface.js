@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Users from "./Users";
+import ModalForm from "./Modal";
 import styled from "styled-components";
 
 const Container = styled.section`
@@ -42,8 +43,10 @@ const Button = styled.button`
   border-radius: 4px;
   border: 1px solid white;
   font-size: 1.2rem;
+  cursor: pointer;
 `;
 const Interface = () => {
+  const [isModal, setIsModal] = useState(false);
   return (
     <Container>
       <Panel>
@@ -56,9 +59,10 @@ const Interface = () => {
             Choose a user to edit data
           </h4>
         </div>
-        <Button>New user</Button>
+        <Button onClick={() => setIsModal(!isModal)}>New user</Button>
       </Menu>
       <Users />
+      {isModal && <ModalForm />}
       <p style={{ opacity: ".6", marginTop: "8px" }}>Showing 0 users</p>
     </Container>
   );
