@@ -13,7 +13,11 @@ const StyledButton = styled.button`
 `;
 
 const Button = ({ children, modalToggle }) => {
-  return <StyledButton onClick={modalToggle}>{children}</StyledButton>;
+  return (
+    <StyledButton modalToggle={modalToggle} onClick={modalToggle}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;

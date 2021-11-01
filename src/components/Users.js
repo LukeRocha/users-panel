@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useGlobalContext } from "../context";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 const UsersContainer = styled.div`
   display: flex;
@@ -18,7 +20,8 @@ const UsersHeader = styled.header`
   border-bottom: 1px solid black;
   font-size: 1.3em;
 `;
-const Users = ({ modalToggle }) => {
+
+const Users = () => {
   return (
     <UsersContainer>
       <UsersHeader>
@@ -26,7 +29,11 @@ const Users = ({ modalToggle }) => {
           <h4>User area</h4>
           <p>Select user to edit info</p>
         </span>
-        <Button modalToggle={modalToggle}>New User</Button>
+        <Button>
+          <Link to="/user" className="links">
+            New User
+          </Link>
+        </Button>
       </UsersHeader>
     </UsersContainer>
   );

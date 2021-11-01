@@ -11,8 +11,8 @@ const HeaderContainer = styled.header`
   font-size: 2rem;
 `;
 
-const Header = ({ children }) => {
-  return <HeaderContainer>{children}</HeaderContainer>;
+const Header = () => {
+  return <HeaderContainer>Users Panel</HeaderContainer>;
 };
 
 export default Header;
