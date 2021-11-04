@@ -12,12 +12,8 @@ const StyledButton = styled.button`
   margin: 5px;
 `;
 
-const Button = ({ children, modalToggle }) => {
-  return (
-    <StyledButton modalToggle={modalToggle} onClick={modalToggle}>
-      {children}
-    </StyledButton>
-  );
+const Button = ({ children }) => {
+  return <StyledButton>{children}</StyledButton>;
 };
 
 export default Button;

@@ -1,11 +1,11 @@
 import React from "react";
+import User from "./User";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./Header";
 import Form from "./Form";
 import Users from "./Users";
 import Error from "./Error";
-import Button from "./Button";
 
 const AppRouter = () => {
   return (
@@ -18,6 +18,7 @@ const AppRouter = () => {
         <Route path="/user">
           <Form />
         </Route>
+        <Route path="/user/:id" children={<User />}></Route>
         <Route path="*">
           <Error />
         </Route>

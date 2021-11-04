@@ -1,16 +1,7 @@
-import React, { useState } from "react";
-import Header from "./components/Header";
-import Users from "./components/Users";
+import React from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <Header>
-        <h3>PANEL</h3>
-      </Header>
-      <Users />
-    </div>
-  );
+  return <div className="App"> </div>;
 }
 
 export default App;

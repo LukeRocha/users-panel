@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import usersData from "../usersData"; //trocar para api servida pelo nodeJs
+import User from "./User";
+
 import styled from "styled-components";
-import { useGlobalContext } from "../context";
-import Button from "./Button";
 import { Link } from "react-router-dom";
+
+import Button from "./Button";
 
 const UsersContainer = styled.div`
   display: flex;
@@ -35,6 +38,11 @@ const Users = () => {
           </Link>
         </Button>
       </UsersHeader>
+      <div>
+        {usersData.map((user) => {
+          return <User user={user} />;
+        })}
+      </div>
     </UsersContainer>
   );
 };
