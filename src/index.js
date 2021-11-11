@@ -3,15 +3,15 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 import AppRouter from "./components/index";
-import { AppContext } from "./context";
+import { AppProvider } from "./context";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppContext.Provider>
-      <AppRouter>
+    <AppRouter>
+      <AppProvider>
         <App />
-      </AppRouter>
-    </AppContext.Provider>
+      </AppProvider>
+    </AppRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import reducer from "./reducer";
 import usersData from "./usersData";
 
@@ -14,16 +14,12 @@ const initialState = {
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const modalToggle = () => {
-    dispatch({ type: "MODAL_TOGGLE" });
-  };
-
-  const submitHandler = (event, user) => {
-    dispatch({ type: "SUBMIT_USER", payload: { user, event } });
+  const submitHandler = (user) => {
+    dispatch({ type: "SUBMIT_USER", payload: user });
   };
 
   return (
-    <AppContext.Provider value={{ ...state, modalToggle, submitHandler }}>
+    <AppContext.Provider value={{ ...state, submitHandler }}>
       {children}
     </AppContext.Provider>
   );

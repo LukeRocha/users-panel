@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import { useGlobalContext } from "../context";
+import { AppProvider } from "../context";
 
 const StyledForm = styled.form`
   display: flex;
@@ -23,7 +24,7 @@ const Input = styled.input`
 `;
 
 const Form = () => {
-  const { submitHandler } = useGlobalContext();
+  const submitHandler = useGlobalContext();
 
   const [person, setPerson] = useState({
     name: "",
@@ -33,14 +34,14 @@ const Form = () => {
     credential: "",
     status: "",
   });
-  //dispatch payload is the person, and we return this on the reducer file
 
+  console.log(useGlobalContext);
   return (
-    <>
+    <AppProvider.Consumer>
       <StyledForm
         onSubmit={(e) => {
           e.preventDefault();
-          submitHandler(person);
+          // console.log(submitHandler);
         }}
       >
         <div>
@@ -102,7 +103,7 @@ const Form = () => {
           <Button onClick={() => submitHandler(person)}>Submit</Button>
         </div>
       </StyledForm>
-    </>
+    </AppProvider.Consumer>
   );
 };
 
