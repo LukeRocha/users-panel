@@ -1,13 +1,13 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
 import usersData from "./usersData";
 
 const AppContext = React.createContext();
 
 const initialState = {
-  loading: false,
   modal: false,
   users: usersData,
+  userInputs: {},
   status: false,
 };
 
@@ -18,8 +18,18 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "SUBMIT_USER", payload: user });
   };
 
+  const editInput = (input) => {
+    dispatch({ type: "RENDER_USERINPUTS", payload: input });
+  };
+
+  const editUser = (id) => {
+    dispatch({ type: "EDIT_USER", payload: id });
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, submitHandler }}>
+    <AppContext.Provider
+      value={{ ...state, submitHandler, editUser, editInput }}
+    >
       {children}
     </AppContext.Provider>
   );

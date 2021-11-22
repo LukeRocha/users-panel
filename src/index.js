@@ -1,17 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import "./index.css";
-import AppRouter from "./components/index";
+import AppRouter from "./pages/index";
 import { AppProvider } from "./context";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppRouter>
-      <AppProvider>
-        <App />
-      </AppProvider>
-    </AppRouter>
+    <AppProvider>
+      <AppRouter>{/* <App /> */}</AppRouter>
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
