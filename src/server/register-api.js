@@ -13,7 +13,7 @@ app.get("/", (req, res, next) => {
 
 const registers = [];
 app.post("/register", (req, res, next) => {
-  console.log("Handled!!!");
+  console.log("Handled!");
 
   registers.push({
     name: req.body.person.name,
