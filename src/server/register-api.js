@@ -12,6 +12,12 @@ app.get("/", (req, res, next) => {
 });
 
 const registers = [];
+const registros = [
+  {
+    user: "lucas",
+    registers: [],
+  },
+];
 
 app.post("/register", (req, res, next) => {
   console.log("Handled!");
