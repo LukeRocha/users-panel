@@ -12,13 +12,14 @@ app.get("/", (req, res, next) => {
 });
 
 const registers = [];
+
 app.post("/register", (req, res, next) => {
   console.log("Handled!");
 
   registers.push({
     name: req.body.person.name,
     email: req.body.person.email,
-    age: parseInt(req.body.person.age),
+    document: parseInt(req.body.person.document),
     phone: parseInt(req.body.person.age),
     status: req.body.person.status,
   });
