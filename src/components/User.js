@@ -24,8 +24,9 @@ const StyledDiv = styled.div`
 
 const User = ({ user }) => {
   const { name, email, document, phone, status } = user;
+  const id = new Date().getTime().toString();
   return (
-    <UserContainer>
+    <UserContainer id={id}>
       <StyledDiv>
         <p>{user.name}</p>
         <p>{user.email}</p>
