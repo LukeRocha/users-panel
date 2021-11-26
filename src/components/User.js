@@ -23,7 +23,7 @@ const StyledDiv = styled.div`
 `;
 
 const User = ({ user }) => {
-  const { name, email, document, phone, status } = user;
+  const { name, email, document, phone, status } = user; //testar apenas user, com spread
   const id = new Date().getTime().toString();
   return (
     <UserContainer id={id}>

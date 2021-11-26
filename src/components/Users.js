@@ -1,12 +1,10 @@
-import React from "react";
-import usersData from "../usersData"; //trocar para api servida pelo nodeJs
+import { React, useEffect } from "react";
 import User from "./User";
 
 import styled from "styled-components";
+import Button from "./Button";
 import { Link } from "react-router-dom";
 
-import Button from "./Button";
-import { useEffect } from "react/cjs/react.development";
 import { useGlobalContext } from "../context";
 
 const UsersContainer = styled.div`
@@ -27,9 +25,12 @@ const UsersHeader = styled.header`
 `;
 
 const Users = () => {
-  const { users } = useGlobalContext();
-  useEffect(() => {}, [usersData]);
-
+  const { users, renderUsers } = useGlobalContext();
+  // var arrayFromStroage = JSON.parse(localStorage.getItem("name"));
+  useEffect(() => {
+    const arrayFromStroage = JSON.parse(localStorage.getItem("users"));
+    if (arrayFromStroage.length > 0) renderUsers();
+  }, []);
   return (
     <UsersContainer>
       <UsersHeader>

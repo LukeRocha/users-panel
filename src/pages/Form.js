@@ -50,7 +50,7 @@ const Form = () => {
   const [person, setPerson] = useState({
     name: "",
     email: "",
-    age: "",
+    document: "",
     phone: "",
     status: "",
   });
