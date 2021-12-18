@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import Input from "../components/Input";
 import { useGlobalContext } from "../context";
 
 const FormHeader = styled.header`
@@ -23,11 +24,6 @@ const StyledForm = styled.form`
   margin: 0 auto;
 `;
 
-const Input = styled.input`
-  padding: 12px;
-  width: 200px;
-  margin: 12px;
-`;
 const Select = styled.select`
   width: 18vw;
   padding: 12px;
@@ -55,7 +51,7 @@ const Form = () => {
     status: "",
   });
 
-  const options = ["Online", "Offline", "Waiting activation", "Disabled"];
+  const userOptions = ["Online", "Offline", "Waiting activation", "Disabled"];
 
   return (
     <>
@@ -111,7 +107,7 @@ const Form = () => {
           <option disabled selected>
             Select client status
           </option>
-          {options.map((option, index) => {
+          {userOptions.map((option, index) => {
             return (
               <option value={option} key={index}>
                 {option}
@@ -120,12 +116,25 @@ const Form = () => {
           })}
         </Select>
         <ButtonArea>
-          <Button>
-            <Link to="/" type="button" className="links">
+          <Button type="button">
+            <Link to="/" className="links">
               Return
             </Link>
           </Button>
-          <Button type="submit" onClick={() => submitHandler(person)}>
+          <Button
+            type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              submitHandler(person);
+              setPerson({
+                name: "",
+                email: "",
+                document: "",
+                phone: "",
+                status: "",
+              });
+            }}
+          >
             Submit
           </Button>
         </ButtonArea>

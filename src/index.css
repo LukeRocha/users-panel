@@ -28,3 +28,41 @@ code {
   height: 50px;
   margin: 4px;
 }
+
+.online {
+  width: 10px;
+  height: 10px;
+  background-color: greenyellow;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.offline {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.disabled {
+  width: 10px;
+  height: 10px;
+  background-color: grey;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.waiting {
+  width: 10px;
+  height: 10px;
+  background-color: yellow;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

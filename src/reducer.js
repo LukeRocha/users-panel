@@ -1,45 +1,43 @@
 const reducer = (state, action) => {
-  //userValidation
-  const documentRegex =
-    "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})";
-  const phoneRegex = "^([1-9]{2}) (?:[2-8]|9[1-9])[0-9]{3}-[0-9]{4}$";
-
-  if (action.type === "USE_EFFECT_RENDER") {
+  if (action.type === "RENDER_USERS") {
     return {
       ...state,
-      users: JSON.parse(localStorage.getItem("users")),
+      users: [...JSON.parse(localStorage.getItem("users"))],
     };
   }
+
   if (action.type === "SUBMIT_USER") {
+    const documentRegex =
+      "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})";
+    const phoneRegex = "^([1-9]{2}) (?:[2-8]|9[1-9])[0-9]{3}-[0-9]{4}$";
     if (
       action.payload.phone.match(phoneRegex) &&
       action.payload.document.match(documentRegex)
     ) {
-      const id = new Date().getTime.toString();
-      const newUsers = [
-        ...state.users,
-        { ...action.payload, id: JSON.stringify(id) },
-      ];
-
-      alert("OK");
+      const newUsers = [...state.users, action.payload];
       localStorage.setItem("users", JSON.stringify(newUsers));
-
+      alert("User registered");
       return {
         ...state,
-        users: [...localStorage.getItem("users")],
+        users: [...JSON.parse(localStorage.getItem("users"))],
       };
     } else {
+      alert("Please fill the inputs correctly");
       return state;
     }
   }
 
   if (action.type === "EDIT_USER") {
+    const handleUser = JSON.parse(localStorage.getItem("users"))[
+      action.payload
+    ];
+
     return {
       ...state,
-      modal: true,
-      userInputs: { ...state.users.id },
+      userInputs: { ...handleUser },
     };
   }
+
   console.log(state);
   return state;
 };

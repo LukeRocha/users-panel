@@ -26,11 +26,12 @@ const UsersHeader = styled.header`
 
 const Users = () => {
   const { users, renderUsers } = useGlobalContext();
-  // var arrayFromStroage = JSON.parse(localStorage.getItem("name"));
+
   useEffect(() => {
-    const arrayFromStroage = JSON.parse(localStorage.getItem("users"));
-    if (arrayFromStroage.length > 0) renderUsers();
+    const arrayFromStorage = JSON.parse(localStorage.getItem("users"));
+    if (arrayFromStorage && arrayFromStorage.length >= 1) renderUsers();
   }, []);
+
   return (
     <UsersContainer>
       <UsersHeader>
@@ -45,8 +46,8 @@ const Users = () => {
         </Button>
       </UsersHeader>
       <div>
-        {users.map((user) => {
-          return <User user={user} />;
+        {users.map((user, key) => {
+          return <User id={key} user={user} />;
         })}
       </div>
     </UsersContainer>

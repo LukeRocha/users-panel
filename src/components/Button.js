@@ -13,8 +13,8 @@ const StyledButton = styled.button`
   /* width: 100vw; */
 `;
 
-const Button = ({ children }) => {
-  return <StyledButton>{children}</StyledButton>;
+const Button = ({ children, ...props }) => {
+  return <StyledButton {...props}>{children}</StyledButton>;
 };
 
 export default Button;
