@@ -10,7 +10,6 @@ const StyledButton = styled.button`
   font-size: 1.2rem;
   cursor: pointer;
   margin: 5px;
-  /* width: 100vw; */
 `;
 
 const Button = ({ children, ...props }) => {

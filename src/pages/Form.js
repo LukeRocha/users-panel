@@ -107,10 +107,10 @@ const Form = () => {
           <option disabled selected>
             Select client status
           </option>
-          {userOptions.map((option, index) => {
+          {userOptions.map((status, index) => {
             return (
-              <option value={option} key={index}>
-                {option}
+              <option value={status} key={index}>
+                {status}
               </option>
             );
           })}

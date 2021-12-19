@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import Modal from "./Modal";
@@ -36,29 +36,28 @@ const Wrapper = styled.div`
 const User = ({ user, id }) => {
   const { editUser } = useGlobalContext();
   const [modal, setModal] = useState(false);
-  const { name, email, document, phone, status } = user; //testar apenas user, com spread
-  // const id = new Date().getTime().toString();
+  const { name, email, document, phone, status } = user;
 
   return (
     <>
       <UserContainer id={id}>
         <StyledDiv>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
+          <p>{name}</p>
+          <p>{email}</p>
         </StyledDiv>
         <StyledDiv>
-          <p>{user.document}</p>
-          <p>{user.phone}</p>
+          <p>{document}</p>
+          <p>{phone}</p>
         </StyledDiv>
         <Wrapper>
           <span
             className={
-              user.status === "Waiting activation"
+              status === "Waiting activation"
                 ? "waiting"
                 : user.status.toLowerCase()
             }
           ></span>
-          <p>{user.status}</p>
+          <p>{status}</p>
         </Wrapper>
         <Button
           onClick={() => {
@@ -68,13 +67,12 @@ const User = ({ user, id }) => {
         >
           Edit user
         </Button>
-        {/* payload: id */}
       </UserContainer>
-      {modal && <Modal user={user} />}
+      {modal && (
+        <Modal closeModal={() => setModal(!modal)} id={id} user={user} />
+      )}
     </>
   );
 };
 
 export default User;
-
-//Use the useParams()

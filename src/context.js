@@ -20,8 +20,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "EDIT_USER", payload: id });
   };
 
-  const submitUserEdit = (user) => {
-    dispatch({ type: "SUBMIT_USER_EDIT", payload: user });
+  const submitUserEdit = (newUser, id) => {
+    dispatch({ type: "SUBMIT_USER_EDIT", payload: newUser, id: id });
   };
 
   const renderUsers = () => {
