@@ -38,6 +38,7 @@ const Header = () => {
       <PanelTitle>
         <Span>
           <img
+            alt="icon"
             className="icon"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Ei-user.svg/1200px-Ei-user.svg.png"
           />

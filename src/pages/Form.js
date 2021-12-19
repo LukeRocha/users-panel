@@ -41,7 +41,7 @@ const ButtonArea = styled.div`
 `;
 
 const Form = () => {
-  const { editInput, submitHandler, ...state } = useGlobalContext();
+  const { submitHandler } = useGlobalContext();
 
   const [person, setPerson] = useState({
     name: "",

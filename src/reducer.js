@@ -13,7 +13,10 @@ const reducer = (state, action) => {
   if (action.type === "SUBMIT_USER") {
     if (
       action.payload.phone.match(phoneRegex) &&
-      action.payload.document.match(documentRegex)
+      action.payload.document.match(documentRegex) &&
+      action.payload.name &&
+      action.payload.status &&
+      action.payload.email
     ) {
       const newUsers = [...state.users, action.payload];
       localStorage.setItem("users", JSON.stringify(newUsers));
@@ -43,7 +46,7 @@ const reducer = (state, action) => {
       action.payload.phone.match(phoneRegex) &&
       action.payload.document.match(documentRegex) &&
       action.payload.name &&
-      // action.payload.status === true &&
+      action.payload.status &&
       action.payload.email
     ) {
       const newUsers = JSON.parse(localStorage.getItem("users")).map(
