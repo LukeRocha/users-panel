@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../context";
 
@@ -90,7 +90,7 @@ const Modal = ({ user, closeModal, id }) => {
             name="inputSelect"
             value={newUser.status}
           >
-            <option>Select client status</option>
+            <option disabled>Select client status</option>
             {userOptions.map((status, index) => {
               return (
                 <option value={status} key={index}>

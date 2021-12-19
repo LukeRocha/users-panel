@@ -60,7 +60,7 @@ const reducer = (state, action) => {
       localStorage.setItem("users", JSON.stringify(newUsers));
       alert("user edited :D");
     } else {
-      alert("Please fill the inputs correctly");
+      alert("Please fill the inputs corrrrrrrectly");
       return state;
     }
 

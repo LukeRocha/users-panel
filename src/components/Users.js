@@ -30,7 +30,7 @@ const Users = () => {
   useEffect(() => {
     const arrayFromStorage = JSON.parse(localStorage.getItem("users"));
     if (arrayFromStorage && arrayFromStorage.length >= 1) renderUsers();
-  });
+  }, []);
 
   return (
     <UsersContainer>
