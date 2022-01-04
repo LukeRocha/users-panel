@@ -1,11 +1,11 @@
 import { React, useEffect } from "react";
+import { useGlobalContext } from "../context";
 import User from "./User";
-
 import styled from "styled-components";
+
 import Button from "./Button";
 import { Link } from "react-router-dom";
-
-import { useGlobalContext } from "../context";
+import { useFetch } from "./useFetch";
 
 const UsersContainer = styled.div`
   display: flex;
@@ -24,12 +24,15 @@ const UsersHeader = styled.header`
   margin: 0 auto;
 `;
 
+const Small = styled.h4`
+  padding: 10px;
+  text-align: center;
+`;
 const Users = () => {
   const { users, renderUsers } = useGlobalContext();
 
   useEffect(() => {
-    const arrayFromStorage = JSON.parse(localStorage.getItem("users"));
-    if (arrayFromStorage && arrayFromStorage.length >= 1) renderUsers();
+    return renderUsers();
   }, []);
 
   return (
@@ -49,6 +52,7 @@ const Users = () => {
         {users.map((user, key) => {
           return <User id={key} user={user} />;
         })}
+        <Small>Displaying {users.length} users </Small>
       </div>
     </UsersContainer>
   );

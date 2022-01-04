@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import { useGlobalContext } from "../context";
+import styled from "styled-components";
 
 import Button from "./Button";
 import Input from "./Input";
-// import Input
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -34,8 +33,9 @@ const StyledModal = styled.div`
 `;
 
 const Select = styled.select`
-  /* width: 18vw; */
+  width: 14.8vw;
   padding: 12px;
+  align-content: left;
   align-self: right;
   margin: 12px;
 `;
@@ -48,9 +48,10 @@ const ModalWrapper = styled.div`
 `;
 
 const Modal = ({ user, closeModal, id }) => {
-  const { submitUserEdit } = useGlobalContext();
-  const userOptions = ["Online", "Offline", "Waiting activation", "Disabled"];
   const [newUser, setNewUser] = useState({ ...user });
+  const { submitUserEdit } = useGlobalContext();
+
+  const userOptions = ["Online", "Offline", "Waiting activation", "Disabled"];
 
   return (
     <>

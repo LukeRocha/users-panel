@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import Button from "./Button";
-import Modal from "./Modal";
-import "../index.css";
 import { useGlobalContext } from "../context";
+
+import styled from "styled-components";
+import "../index.css";
+
+import Modal from "./Modal";
+import Button from "./Button";
 
 const UserContainer = styled.div`
   display: flex;
@@ -16,6 +18,7 @@ const UserContainer = styled.div`
   width: 80vw;
   margin: 10px auto;
 `;
+
 const StyledDiv = styled.div`
   display: flex;
   flex-flow: column wrap;
@@ -24,6 +27,7 @@ const StyledDiv = styled.div`
   gap: 4px;
   width: 20vw;
 `;
+
 const Wrapper = styled.div`
   width: 18vw;
   display: flex;
@@ -35,8 +39,9 @@ const Wrapper = styled.div`
 
 const User = ({ user, id }) => {
   const { editUser } = useGlobalContext();
-  const [modal, setModal] = useState(false);
   const { name, email, document, phone, status } = user;
+
+  const [modal, setModal] = useState(false);
 
   return (
     <>
@@ -52,9 +57,7 @@ const User = ({ user, id }) => {
         <Wrapper>
           <span
             className={
-              status === "Waiting activation"
-                ? "waiting"
-                : user.status.toLowerCase()
+              status === "Waiting activation" ? "waiting" : status.toLowerCase()
             }
           ></span>
           <p>{status}</p>
