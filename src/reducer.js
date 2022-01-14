@@ -4,6 +4,8 @@ const reducer = (state, action) => {
   const phoneRegex = "^([1-9]{2}) (?:[2-8]|9[1-9])[0-9]{3}-[0-9]{4}$";
 
   if (action.type === "RENDER_USERS") {
+    const array = action.payload;
+    console.log(array);
     return {
       ...state,
       users: action.payload,

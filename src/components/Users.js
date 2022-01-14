@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import { useFetch } from "./useFetch";
 
 const UsersContainer = styled.div`
   display: flex;
@@ -32,8 +31,8 @@ const Users = () => {
   const { users, renderUsers } = useGlobalContext();
 
   useEffect(() => {
-    return renderUsers();
-  }, []);
+    if (users) renderUsers();
+  }, [users]);
 
   return (
     <UsersContainer>

@@ -49,9 +49,8 @@ const ModalWrapper = styled.div`
 
 const Modal = ({ user, closeModal, id }) => {
   const [newUser, setNewUser] = useState({ ...user });
-  const { submitUserEdit } = useGlobalContext();
-
-  const userOptions = ["Online", "Offline", "Waiting activation", "Disabled"];
+  const { submitUserEdit, ...state } = useGlobalContext();
+  const selectOptions = Object.values(state.userStatus);
 
   return (
     <>
@@ -69,8 +68,8 @@ const Modal = ({ user, closeModal, id }) => {
           <Input
             type="text"
             placeholder="E-mail..."
-            onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-            value={newUser.email}
+            onChange={(e) => setNewUser({ ...newUser, mail: e.target.value })}
+            value={newUser.mail}
           />
           <Input
             type="text"
@@ -92,7 +91,7 @@ const Modal = ({ user, closeModal, id }) => {
             value={newUser.status}
           >
             <option disabled>Select client status</option>
-            {userOptions.map((status, index) => {
+            {selectOptions.map((status, index) => {
               return (
                 <option value={status} key={index}>
                   {status}

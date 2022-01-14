@@ -1,13 +1,19 @@
 import React, { useContext, useReducer } from "react";
+import { useFetch } from "./components/useFetch";
 import reducer from "./reducer";
 import Modal from "./components/Modal";
-import { useFetch } from "./components/useFetch";
 const AppContext = React.createContext();
 
 const initialState = {
   modal: Modal,
   users: [],
   userInputs: {},
+  userStatus: {
+    online: "online",
+    offline: "offline",
+    disabled: "disabled",
+    waiting_activation: "waiting activation",
+  },
 };
 
 const AppProvider = ({ children }) => {

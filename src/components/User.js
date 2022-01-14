@@ -36,10 +36,24 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 5px;
 `;
+const Span = styled.span`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: ${({ bg }) => (bg ? bg : "yellow")};
+`;
+
+const statusColors = {
+  online: "greenyellow",
+  offline: "red",
+  disabled: "gray",
+  waiting_activation: "yellow",
+};
 
 const User = ({ user, id }) => {
   const { editUser } = useGlobalContext();
-  const { name, email, document, phone, status } = user;
+  const { name, mail, document, phone, status } = user;
 
   const [modal, setModal] = useState(false);
 
@@ -48,18 +62,20 @@ const User = ({ user, id }) => {
       <UserContainer id={id}>
         <StyledDiv>
           <p>{name}</p>
-          <p>{email}</p>
+          <p>{mail}</p>
         </StyledDiv>
         <StyledDiv>
           <p>{document}</p>
           <p>{phone}</p>
         </StyledDiv>
         <Wrapper>
-          <span
-            className={
-              status === "Waiting activation" ? "waiting" : status.toLowerCase()
+          <Span
+            bg={
+              statusColors[status] == "waiting activation"
+                ? "yellow"
+                : statusColors[status]
             }
-          ></span>
+          ></Span>
           <p>{status}</p>
         </Wrapper>
         <Button

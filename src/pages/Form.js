@@ -25,7 +25,7 @@ const StyledForm = styled.form`
 `;
 
 const Select = styled.select`
-  width: 18vw;
+  width: 200px;
   padding: 12px;
   align-self: right;
   margin: 12px;
@@ -41,7 +41,8 @@ const ButtonArea = styled.div`
 `;
 
 const Form = () => {
-  const { submitHandler } = useGlobalContext();
+  const { submitHandler, ...state } = useGlobalContext();
+  const selectOptions = Object.values(state.userStatus);
 
   const [person, setPerson] = useState({
     name: "",
@@ -50,8 +51,6 @@ const Form = () => {
     phone: "",
     status: "",
   });
-
-  const userOptions = ["Online", "Offline", "Waiting activation", "Disabled"];
 
   return (
     <>
@@ -107,7 +106,7 @@ const Form = () => {
           <option disabled selected>
             Select client status
           </option>
-          {userOptions.map((status, index) => {
+          {selectOptions.map((status, index) => {
             return (
               <option value={status} key={index}>
                 {status}
