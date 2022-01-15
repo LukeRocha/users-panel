@@ -48,7 +48,7 @@ const statusColors = {
   online: "greenyellow",
   offline: "red",
   disabled: "gray",
-  waiting_activation: "yellow",
+  "waiting activation": "yellow",
 };
 
 const User = ({ user, id }) => {
@@ -69,13 +69,7 @@ const User = ({ user, id }) => {
           <p>{phone}</p>
         </StyledDiv>
         <Wrapper>
-          <Span
-            bg={
-              statusColors[status] == "waiting activation"
-                ? "yellow"
-                : statusColors[status]
-            }
-          ></Span>
+          <Span bg={statusColors[status]}></Span>
           <p>{status}</p>
         </Wrapper>
         <Button
