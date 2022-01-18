@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import { useFetch } from "./components/useFetch";
 import reducer from "./reducer";
 import Modal from "./components/Modal";
@@ -18,8 +18,8 @@ const initialState = {
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [url, setUrl] = useState("http://localhost:5000/api/accounts");
 
-  const url = "http://localhost:5000/api/accounts";
   const { apiData } = useFetch(url);
 
   const renderUsers = () => {

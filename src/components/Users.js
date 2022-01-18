@@ -1,5 +1,6 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { useGlobalContext } from "../context";
+import { useFetch } from "./useFetch";
 import User from "./User";
 import styled from "styled-components";
 
@@ -29,6 +30,8 @@ const Small = styled.h4`
 `;
 const Users = () => {
   const { users, renderUsers } = useGlobalContext();
+  const [url, setUrl] = useState("http://localhost:5000/api/accounts");
+  const { isLoading } = useFetch(url);
 
   useEffect(() => {
     if (users) renderUsers();
@@ -48,9 +51,11 @@ const Users = () => {
         </Button>
       </UsersHeader>
       <div>
-        {users.map((user, key) => {
-          return <User id={key} user={user} />;
-        })}
+        {isLoading
+          ? "loading..."
+          : users.map((user, key) => {
+              return <User id={key} user={user} />;
+            })}
         <Small>Displaying {users.length} users </Small>
       </div>
     </UsersContainer>

@@ -46,7 +46,7 @@ const Form = () => {
 
   const [person, setPerson] = useState({
     name: "",
-    email: "",
+    mail: "",
     document: "",
     phone: "",
     status: "",
@@ -64,7 +64,7 @@ const Form = () => {
           submitHandler(person);
           setPerson({
             name: "",
-            email: "",
+            mail: "",
             document: "",
             phone: "",
             status: "",
@@ -80,8 +80,8 @@ const Form = () => {
 
         <Input
           placeholder="Email..."
-          value={person.email}
-          onChange={(e) => setPerson({ ...person, email: e.target.value })}
+          value={person.mail}
+          onChange={(e) => setPerson({ ...person, mail: e.target.value })}
           name="inputEmail"
         />
 
@@ -127,7 +127,7 @@ const Form = () => {
               submitHandler(person);
               setPerson({
                 name: "",
-                email: "",
+                mail: "",
                 document: "",
                 phone: "",
                 status: "",

@@ -1,11 +1,10 @@
+import axios from "axios";
 const reducer = (state, action) => {
   const documentRegex =
     "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})";
   const phoneRegex = "^([1-9]{2}) (?:[2-8]|9[1-9])[0-9]{3}-[0-9]{4}$";
 
   if (action.type === "RENDER_USERS") {
-    const array = action.payload;
-    console.log(array);
     return {
       ...state,
       users: action.payload,
@@ -18,15 +17,18 @@ const reducer = (state, action) => {
       action.payload.document.match(documentRegex) &&
       action.payload.name &&
       action.payload.status &&
-      action.payload.email
+      action.payload.mail
     ) {
-      const newUsers = [...state.users, action.payload];
-      localStorage.setItem("users", JSON.stringify(newUsers));
-      alert("User registered");
-      return {
-        ...state,
-        users: [...JSON.parse(localStorage.getItem("users"))],
-      };
+      axios
+        .post("http://localhost:5000/api/accounts", action.payload)
+        .then((resp) => {
+          alert("User registered");
+          console.log(resp);
+        })
+        .catch((err) => {
+          alert("Request is not valid, check server status on console");
+          console.log(err);
+        });
     } else {
       alert("Please fill the inputs correctly");
       return state;
@@ -49,7 +51,7 @@ const reducer = (state, action) => {
       action.payload.document.match(documentRegex) &&
       action.payload.name &&
       action.payload.status &&
-      action.payload.email
+      action.payload.mail
     ) {
       const newUsers = JSON.parse(localStorage.getItem("users")).map(
         (user, index) => {
