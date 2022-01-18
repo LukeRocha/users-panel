@@ -30,12 +30,12 @@ const Small = styled.h4`
 `;
 const Users = () => {
   const { users, renderUsers } = useGlobalContext();
-  const [url, setUrl] = useState("http://localhost:5000/api/accounts");
+  const url = "http://localhost:5000/api/accounts";
   const { isLoading } = useFetch(url);
 
   useEffect(() => {
-    if (users) renderUsers();
-  }, [users]);
+    renderUsers();
+  }, []);
 
   return (
     <UsersContainer>

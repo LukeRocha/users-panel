@@ -5,9 +5,11 @@ const reducer = (state, action) => {
   const phoneRegex = "^([1-9]{2}) (?:[2-8]|9[1-9])[0-9]{3}-[0-9]{4}$";
 
   if (action.type === "RENDER_USERS") {
+    localStorage.setItem("users", JSON.stringify(action.payload));
+    const newUsers = JSON.parse(localStorage.getItem("users"));
     return {
       ...state,
-      users: action.payload,
+      users: [...newUsers],
     };
   }
 
@@ -36,9 +38,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "EDIT_USER") {
-    const handleUser = JSON.parse(localStorage.getItem("users"))[
-      action.payload
-    ];
+    const handleUser = state.users[action.payload];
     return {
       ...state,
       userInputs: { ...handleUser },
@@ -53,22 +53,18 @@ const reducer = (state, action) => {
       action.payload.status &&
       action.payload.mail
     ) {
-      const newUsers = JSON.parse(localStorage.getItem("users")).map(
-        (user, index) => {
-          if (index === action.id) {
-            user = { ...action.payload };
-          }
-          return user;
-        }
-      );
-      localStorage.setItem("users", JSON.stringify(newUsers));
+      axios
+        .put(`http://localhost:5000/api/accounts/${action.id}`, action.payload)
+        .then((resp) => console.log(resp))
+        .catch((err) => {
+          console.log(err);
+        });
       alert("user edited :D");
     } else {
       alert("Please fill the inputs correctly");
       return state;
     }
-
-    return { ...state, users: [...JSON.parse(localStorage.getItem("users"))] };
+    return state;
   }
   return state;
 };
