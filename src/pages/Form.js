@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as yup from "yup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
@@ -44,6 +45,23 @@ const Form = () => {
   const { submitHandler, ...state } = useGlobalContext();
   const selectOptions = Object.values(state.userStatus);
 
+  const userSchema = yup.object().shape({
+    name: yup.string().required(),
+    mail: yup.string().email(),
+    document: yup
+      .number()
+      .required()
+      .positive()
+      .integer()
+      .min(11),
+    phone: yup
+      .number()
+      .required()
+      .positive()
+      .integer()
+      .min(11),
+  });
+
   const [person, setPerson] = useState({
     name: "",
     mail: "",
@@ -51,6 +69,22 @@ const Form = () => {
     phone: "",
     status: "",
   });
+
+  const formValidationHandler = async () => {
+    const isValid = await userSchema.isValid(person);
+    if (isValid) {
+      submitHandler(person);
+      setPerson({
+        name: "",
+        mail: "",
+        document: "",
+        phone: "",
+        status: "",
+      });
+    } else {
+      alert("Please fill the inputs correctly");
+    }
+  };
 
   return (
     <>
@@ -124,14 +158,7 @@ const Form = () => {
             type="submit"
             onClick={(e) => {
               e.preventDefault();
-              submitHandler(person);
-              setPerson({
-                name: "",
-                mail: "",
-                document: "",
-                phone: "",
-                status: "",
-              });
+              formValidationHandler();
             }}
           >
             Submit

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import logo from "../assets/logo.png";
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -10,6 +11,11 @@ const HeaderContainer = styled.header`
   color: white;
   font-size: 2rem;
   width: 100vw;
+`;
+
+const Logo = styled.img`
+  width: 60px;
+  height: 60px;
 `;
 
 const PanelTitle = styled.div`
@@ -34,7 +40,9 @@ const Span = styled.span`
 const Header = () => {
   return (
     <>
-      <HeaderContainer>LOGO</HeaderContainer>
+      <HeaderContainer>
+        <Logo src={logo} />
+      </HeaderContainer>
       <PanelTitle>
         <Span>
           <img

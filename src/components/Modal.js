@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useGlobalContext } from "../context";
 import styled from "styled-components";
-
+import * as yup from "yup";
 import Button from "./Button";
 import Input from "./Input";
 
@@ -51,6 +51,32 @@ const Modal = ({ user, closeModal, id }) => {
   const [newUser, setNewUser] = useState({ ...user });
   const { submitUserEdit, ...state } = useGlobalContext();
   const selectOptions = Object.values(state.userStatus);
+
+  const userSchema = yup.object().shape({
+    name: yup.string().required(),
+    mail: yup.string().email(),
+    document: yup
+      .number()
+      .required()
+      .positive()
+      .integer()
+      .min(11),
+    phone: yup
+      .number()
+      .required()
+      .positive()
+      .integer()
+      .min(11),
+  });
+
+  const userInputsValidation = async () => {
+    const isValid = await userSchema.isValid(newUser);
+    if (isValid) {
+      submitUserEdit(newUser);
+      closeModal();
+    }
+    alert("Please input valid info ");
+  };
 
   return (
     <>
@@ -103,8 +129,7 @@ const Modal = ({ user, closeModal, id }) => {
           <ModalWrapper>
             <Button
               onClick={() => {
-                submitUserEdit(newUser, id);
-                closeModal();
+                userInputsValidation();
               }}
             >
               Save
