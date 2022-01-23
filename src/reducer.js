@@ -13,11 +13,17 @@ const reducer = (state, action) => {
       .then((resp) => {
         alert("User registered");
         console.log(resp);
+        return {
+          ...state,
+          users: resp,
+        };
       })
       .catch((err) => {
         alert("Request is not valid, check server status on console");
         console.log(err);
+        return state;
       });
+    console.log(state.users);
   }
 
   if (action.type === "EDIT_USER") {

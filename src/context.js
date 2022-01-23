@@ -18,12 +18,12 @@ const initialState = {
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [url, setUrl] = useState("http://localhost:5000/api/accounts");
-
+  const url = "http://localhost:5000/api/accounts";
   const { apiData } = useFetch(url);
-
+  console.log(apiData);
   const renderUsers = () => {
     dispatch({ type: "RENDER_USERS", payload: apiData });
+    console.log(dispatch.payload);
   };
 
   const submitHandler = (user) => {
