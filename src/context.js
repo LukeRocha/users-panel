@@ -1,5 +1,4 @@
-import React, { useContext, useReducer, useState } from "react";
-import { useFetch } from "./components/useFetch";
+import React, { useState, useContext, useReducer } from "react";
 import reducer from "./reducer";
 import Modal from "./components/Modal";
 const AppContext = React.createContext();
@@ -19,11 +18,18 @@ const initialState = {
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const url = "http://localhost:5000/api/accounts";
-  const { apiData } = useFetch(url);
-  console.log(apiData);
-  const renderUsers = () => {
-    dispatch({ type: "RENDER_USERS", payload: apiData });
-    console.log(dispatch.payload);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const apiData = async (url) => {
+    const response = await fetch(url);
+    const result = await response.json();
+    setIsLoading(false);
+    return result;
+  };
+
+  const renderUsers = async () => {
+    const users = await apiData(url);
+    dispatch({ type: "RENDER_USERS", payload: users });
   };
 
   const submitHandler = (user) => {
@@ -40,7 +46,14 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ ...state, submitHandler, editUser, submitUserEdit, renderUsers }}
+      value={{
+        ...state,
+        submitHandler,
+        editUser,
+        submitUserEdit,
+        renderUsers,
+        isLoading,
+      }}
     >
       {children}
     </AppContext.Provider>

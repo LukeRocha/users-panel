@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 
-const HeaderContainer = styled.header`
+const HeaderLogoContainer = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -13,12 +13,12 @@ const HeaderContainer = styled.header`
   width: 100vw;
 `;
 
-const Logo = styled.img`
+const LogoImgContainer = styled.img`
   width: 60px;
   height: 60px;
 `;
 
-const PanelTitle = styled.div`
+const HeaderPanelTitle = styled.div`
   display: flex;
   flex-flow: column wrap;
   align-items: flex-start;
@@ -31,7 +31,7 @@ const PanelTitle = styled.div`
   gap: 18px;
 `;
 
-const Span = styled.span`
+const SpanTitle = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -40,19 +40,19 @@ const Span = styled.span`
 const Header = () => {
   return (
     <>
-      <HeaderContainer>
-        <Logo src={logo} />
-      </HeaderContainer>
-      <PanelTitle>
-        <Span>
+      <HeaderLogoContainer>
+        <LogoImgContainer src={logo} />
+      </HeaderLogoContainer>
+      <HeaderPanelTitle>
+        <SpanTitle>
           <img
             alt="icon"
             className="icon"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Ei-user.svg/1200px-Ei-user.svg.png"
           />
           Users Panel
-        </Span>
-      </PanelTitle>
+        </SpanTitle>
+      </HeaderPanelTitle>
     </>
   );
 };

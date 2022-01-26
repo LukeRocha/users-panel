@@ -1,6 +1,5 @@
 import { React, useEffect } from "react";
 import { AppContext, useGlobalContext } from "../context";
-import { useFetch } from "./useFetch";
 import User from "./User";
 import styled from "styled-components";
 
@@ -29,15 +28,11 @@ const Small = styled.h4`
   text-align: center;
 `;
 const Users = () => {
-  const { users, renderUsers } = useGlobalContext();
-  const url = "http://localhost:5000/api/accounts";
-
-  const { isLoading } = useFetch(url);
+  const { users, renderUsers, isLoading } = useGlobalContext();
 
   useEffect(() => {
     renderUsers();
-    console.log(users);
-  }, [users]);
+  }, [isLoading]);
 
   return (
     <UsersContainer>

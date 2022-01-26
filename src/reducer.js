@@ -15,7 +15,6 @@ const reducer = (state, action) => {
         console.log(resp);
         return {
           ...state,
-          users: resp,
         };
       })
       .catch((err) => {
@@ -37,12 +36,17 @@ const reducer = (state, action) => {
   if (action.type === "SUBMIT_USER_EDIT") {
     axios
       .put(`http://localhost:5000/api/accounts/${action.id}`, action.payload)
-      .then((resp) => console.log(resp))
+      .then((resp) => {
+        console.log(resp);
+        return {
+          ...state,
+          users: resp,
+        };
+      })
       .catch((err) => {
         console.log(err);
       });
     alert("user edited :D");
-    return state;
   }
   return state;
 };

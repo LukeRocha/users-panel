@@ -72,10 +72,11 @@ const Modal = ({ user, closeModal, id }) => {
   const userInputsValidation = async () => {
     const isValid = await userSchema.isValid(newUser);
     if (isValid) {
-      submitUserEdit(newUser);
+      await submitUserEdit(newUser, id);
       closeModal();
+    } else {
+      alert("Please input valid info ");
     }
-    alert("Please input valid info ");
   };
 
   return (
