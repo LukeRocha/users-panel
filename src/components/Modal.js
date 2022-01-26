@@ -17,7 +17,7 @@ const ModalBackground = styled.div`
   background: rgba(0, 0, 0, 0.5);
 `;
 
-const StyledModal = styled.div`
+const StyledModal = styled.form`
   margin: 0 auto;
   padding: 8px;
   height: auto;
@@ -32,7 +32,7 @@ const StyledModal = styled.div`
   background: white;
 `;
 
-const Select = styled.select`
+const SelectContainer = styled.select`
   width: 14.8vw;
   padding: 12px;
   align-content: left;
@@ -82,7 +82,12 @@ const Modal = ({ user, closeModal, id }) => {
   return (
     <>
       <ModalBackground>
-        <StyledModal>
+        <StyledModal
+          onSubmit={(e) => {
+            e.preventDefault();
+            userInputsValidation();
+          }}
+        >
           <ModalWrapper>
             <h3>Edit user </h3>
           </ModalWrapper>
@@ -112,7 +117,7 @@ const Modal = ({ user, closeModal, id }) => {
             onChange={(e) => setNewUser({ ...newUser, phone: e.target.value })}
             value={newUser.phone}
           />
-          <Select
+          <SelectContainer
             onChange={(e) => setNewUser({ ...newUser, status: e.target.value })}
             name="inputSelect"
             value={newUser.status}
@@ -125,11 +130,13 @@ const Modal = ({ user, closeModal, id }) => {
                 </option>
               );
             })}
-          </Select>
+          </SelectContainer>
 
           <ModalWrapper>
             <Button
-              onClick={() => {
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
                 userInputsValidation();
               }}
             >

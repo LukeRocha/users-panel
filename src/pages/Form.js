@@ -95,14 +95,7 @@ const Form = () => {
       <StyledForm
         onSubmit={(e) => {
           e.preventDefault();
-          submitHandler(person);
-          setPerson({
-            name: "",
-            mail: "",
-            document: "",
-            phone: "",
-            status: "",
-          });
+          formValidationHandler();
         }}
       >
         <Input
