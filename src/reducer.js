@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const reducer = (state, action) => {
   if (action.type === "RENDER_USERS") {
     return {
@@ -8,21 +9,10 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "SUBMIT_USER") {
-    axios
-      .post("http://localhost:5000/api/accounts", action.payload)
-      .then((resp) => {
-        alert("User registered");
-        console.log(resp);
-        return {
-          ...state,
-        };
-      })
-      .catch((err) => {
-        alert("Request is not valid, check server status on console");
-        console.log(err);
-        return state;
-      });
-    console.log(state.users);
+    return {
+      ...state,
+      users: action.result,
+    };
   }
 
   if (action.type === "EDIT_USER") {
@@ -34,19 +24,8 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "SUBMIT_USER_EDIT") {
-    axios
-      .put(`http://localhost:5000/api/accounts/${action.id}`, action.payload)
-      .then((resp) => {
-        console.log(resp);
-        return {
-          ...state,
-          users: resp,
-        };
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    alert("user edited :D");
+    console.log(action.result);
+    return { ...state, users: action.result };
   }
   return state;
 };

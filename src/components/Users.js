@@ -1,5 +1,5 @@
 import { React, useEffect } from "react";
-import { AppContext, useGlobalContext } from "../context";
+import { useGlobalContext } from "../context";
 import User from "./User";
 import styled from "styled-components";
 
@@ -28,11 +28,19 @@ const Small = styled.h4`
   text-align: center;
 `;
 const Users = () => {
-  const { users, renderUsers, isLoading } = useGlobalContext();
+  const { users, renderUsers, submitHandler } = useGlobalContext();
 
   useEffect(() => {
     renderUsers();
-  }, [isLoading]);
+  }, []);
+
+  const usuario = {
+    name: "Jurandir de Souza",
+    mail: "jurandir@test.com.br",
+    document: "12345678912",
+    phone: "12345678912",
+    status: "online",
+  };
 
   return (
     <UsersContainer>
@@ -46,13 +54,12 @@ const Users = () => {
             New User
           </Link>
         </Button>
+        <Button onClick={() => submitHandler(usuario)}>click</Button>
       </UsersHeader>
       <div>
-        {isLoading
-          ? "loading..."
-          : users.map((user, key) => {
-              return <User id={key} user={user} />;
-            })}
+        {users.map((user, key) => {
+          return <User id={key} user={user} />;
+        })}
         <Small>Displaying {users.length} users </Small>
       </div>
     </UsersContainer>
