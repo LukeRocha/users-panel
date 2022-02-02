@@ -21,7 +21,7 @@ export const postUser = async (user) => {
   return postResult;
 };
 
-export const editUser = async (user, id) => {
+export const editUserData = async (user, id) => {
   const putUserResult = await axios
     .put(`http://localhost:5000/api/accounts/${id}`, user)
     .then((resp) => {
@@ -32,6 +32,6 @@ export const editUser = async (user, id) => {
         console.log(err);
       }
     });
-
+  console.log(putUserResult);
   return putUserResult;
 };

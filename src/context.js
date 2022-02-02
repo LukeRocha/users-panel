@@ -1,7 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
 import Modal from "./components/Modal";
-import { getUsers, postUser, editUser } from "./operations/operations";
+import { getUsers, postUser, editUserData } from "./operations/operations";
 const AppContext = React.createContext();
 
 const initialState = {
@@ -30,18 +30,16 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "SUBMIT_USER", payload: user, result: users });
   };
 
-  const editUser = (id) => {
-    dispatch({ type: "EDIT_USER", payload: id });
+  const editUserModal = (id) => {
+    dispatch({ type: "EDIT_USER_MODAL", payload: id });
   };
 
-  const submitUserEdit = async (newUser, id) => {
-    const result = await editUser(newUser, id);
+  const submitUserEdit = async (user, id) => {
+    const result = await editUserData(user, id);
     console.log(result);
     dispatch({
-      type: "SUBMIT_USER_EDIT",
-      payload: newUser,
-      id: id,
-      result: result,
+      type: "SUBMIT_USER_EDITS",
+      payload: result,
     });
   };
 
@@ -50,7 +48,7 @@ const AppProvider = ({ children }) => {
       value={{
         ...state,
         submitHandler,
-        editUser,
+        editUserModal,
         submitUserEdit,
         renderUsers,
       }}

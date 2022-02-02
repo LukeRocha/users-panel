@@ -28,19 +28,11 @@ const Small = styled.h4`
   text-align: center;
 `;
 const Users = () => {
-  const { users, renderUsers, submitHandler } = useGlobalContext();
+  const { users, renderUsers } = useGlobalContext();
 
   useEffect(() => {
     renderUsers();
   }, []);
-
-  const usuario = {
-    name: "Jurandir de Souza",
-    mail: "jurandir@test.com.br",
-    document: "12345678912",
-    phone: "12345678912",
-    status: "online",
-  };
 
   return (
     <UsersContainer>
@@ -54,7 +46,6 @@ const Users = () => {
             New User
           </Link>
         </Button>
-        <Button onClick={() => submitHandler(usuario)}>click</Button>
       </UsersHeader>
       <div>
         {users.map((user, key) => {

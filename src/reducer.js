@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const reducer = (state, action) => {
   if (action.type === "RENDER_USERS") {
     return {
@@ -15,7 +13,7 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === "EDIT_USER") {
+  if (action.type === "EDIT_USER_MODAL") {
     const handleUser = state.users[action.payload];
     return {
       ...state,
@@ -23,9 +21,11 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === "SUBMIT_USER_EDIT") {
-    console.log(action.result);
-    return { ...state, users: action.result };
+  if (action.type === "SUBMIT_USER_EDITS") {
+    return {
+      ...state,
+      users: action.payload,
+    };
   }
   return state;
 };

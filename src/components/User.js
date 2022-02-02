@@ -52,7 +52,7 @@ const statusColors = {
 };
 
 const User = ({ user, id }) => {
-  const { editUser } = useGlobalContext();
+  const { editUserModal } = useGlobalContext();
   const { name, mail, document, phone, status } = user;
 
   const [modal, setModal] = useState(false);
@@ -74,7 +74,7 @@ const User = ({ user, id }) => {
         </Wrapper>
         <Button
           onClick={() => {
-            editUser(id);
+            editUserModal(id);
             setModal(!modal);
           }}
         >
