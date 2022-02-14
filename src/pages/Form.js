@@ -46,15 +46,15 @@ const Form = () => {
   const selectOptions = Object.values(state.userStatus);
 
   const userSchema = yup.object().shape({
-    name: yup.string().required(),
-    mail: yup.string().email(),
-    document: yup
+    user_name: yup.string().required(),
+    user_mail: yup.string().email(),
+    user_document: yup
       .number()
       .required()
       .positive()
       .integer()
       .min(11),
-    phone: yup
+    user_phone: yup
       .number()
       .required()
       .positive()
@@ -63,11 +63,11 @@ const Form = () => {
   });
 
   const [person, setPerson] = useState({
-    name: "",
-    mail: "",
-    document: "",
-    phone: "",
-    status: "",
+    user_name: "",
+    user_mail: "",
+    user_document: "",
+    user_phone: "",
+    user_status: "",
   });
 
   const formValidationHandler = async () => {
@@ -75,11 +75,11 @@ const Form = () => {
     if (isValid) {
       submitHandler(person);
       setPerson({
-        name: "",
-        mail: "",
-        document: "",
-        phone: "",
-        status: "",
+        user_name: "",
+        user_mail: "",
+        user_document: "",
+        user_phone: "",
+        user_status: "",
       });
       alert("User has been registered...");
     } else {
@@ -101,34 +101,38 @@ const Form = () => {
       >
         <Input
           placeholder="Name..."
-          value={person.name}
-          onChange={(e) => setPerson({ ...person, name: e.target.value })}
+          value={person.user_name}
+          onChange={(e) => setPerson({ ...person, user_name: e.target.value })}
           name="inputName"
         />
 
         <Input
           placeholder="Email..."
-          value={person.mail}
-          onChange={(e) => setPerson({ ...person, mail: e.target.value })}
+          value={person.user_mail}
+          onChange={(e) => setPerson({ ...person, user_mail: e.target.value })}
           name="inputEmail"
         />
 
         <Input
           placeholder="Document.."
-          value={person.document}
-          onChange={(e) => setPerson({ ...person, document: e.target.value })}
+          value={person.user_document}
+          onChange={(e) =>
+            setPerson({ ...person, user_document: e.target.value })
+          }
           name="inputDocument"
         />
 
         <Input
           placeholder="Phone..."
-          value={person.phone}
-          onChange={(e) => setPerson({ ...person, phone: e.target.value })}
+          value={person.user_phone}
+          onChange={(e) => setPerson({ ...person, user_phone: e.target.value })}
           name="inputPhone"
         />
 
         <Select
-          onChange={(e) => setPerson({ ...person, status: e.target.value })}
+          onChange={(e) =>
+            setPerson({ ...person, user_status: e.target.value })
+          }
           name="inputSelect"
         >
           <option disabled selected>
