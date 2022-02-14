@@ -48,8 +48,8 @@ const Users = () => {
         </Button>
       </UsersHeader>
       <div>
-        {users.map((user, key) => {
-          return <User id={key} user={user} />;
+        {users.map((user) => {
+          return <User id={user.id} user={user} />;
         })}
         <Small>Displaying {users.length} users </Small>
       </div>
