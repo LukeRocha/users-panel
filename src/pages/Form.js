@@ -81,6 +81,7 @@ const Form = () => {
         phone: "",
         status: "",
       });
+      alert("User has been registered...");
     } else {
       alert("Please fill the inputs correctly");
     }

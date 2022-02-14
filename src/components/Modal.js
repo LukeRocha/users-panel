@@ -53,15 +53,15 @@ const Modal = ({ user, closeModal, id }) => {
   const selectOptions = Object.values(state.userStatus);
 
   const userSchema = yup.object().shape({
-    name: yup.string().required(),
-    mail: yup.string().email(),
-    document: yup
+    user_name: yup.string().required(),
+    user_mail: yup.string().email(),
+    user_document: yup
       .number()
       .required()
       .positive()
       .integer()
       .min(11),
-    phone: yup
+    user_phone: yup
       .number()
       .required()
       .positive()
@@ -94,33 +94,41 @@ const Modal = ({ user, closeModal, id }) => {
           <Input
             type="text"
             placeholder="Name..."
-            onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-            value={newUser.name}
+            onChange={(e) =>
+              setNewUser({ ...newUser, user_name: e.target.value })
+            }
+            value={newUser.user_name}
           />
           <Input
             type="text"
             placeholder="E-mail..."
-            onChange={(e) => setNewUser({ ...newUser, mail: e.target.value })}
-            value={newUser.mail}
+            onChange={(e) =>
+              setNewUser({ ...newUser, user_mail: e.target.value })
+            }
+            value={newUser.user_mail}
           />
           <Input
             type="text"
             placeholder="Document"
             onChange={(e) =>
-              setNewUser({ ...newUser, document: e.target.value })
+              setNewUser({ ...newUser, user_document: e.target.value })
             }
-            value={newUser.document}
+            value={newUser.user_document}
           />
           <Input
             type="text"
             placeholder="Phone..."
-            onChange={(e) => setNewUser({ ...newUser, phone: e.target.value })}
-            value={newUser.phone}
+            onChange={(e) =>
+              setNewUser({ ...newUser, user_phone: e.target.value })
+            }
+            value={newUser.user_phone}
           />
           <SelectContainer
-            onChange={(e) => setNewUser({ ...newUser, status: e.target.value })}
+            onChange={(e) =>
+              setNewUser({ ...newUser, user_status: e.target.value })
+            }
             name="inputSelect"
-            value={newUser.status}
+            value={newUser.user_status}
           >
             <option disabled>Select client status</option>
             {selectOptions.map((status, index) => {

@@ -53,7 +53,7 @@ const statusColors = {
 
 const User = ({ user, id }) => {
   const { editUserModal } = useGlobalContext();
-  const { name, mail, document, phone, status } = user;
+  const { user_name, user_mail, user_document, user_phone, user_status } = user;
 
   const [modal, setModal] = useState(false);
 
@@ -61,16 +61,16 @@ const User = ({ user, id }) => {
     <>
       <UserContainer id={id}>
         <StyledDiv>
-          <p>{name}</p>
-          <p>{mail}</p>
+          <p>{user_name}</p>
+          <p>{user_mail}</p>
         </StyledDiv>
         <StyledDiv>
-          <p>{document}</p>
-          <p>{phone}</p>
+          <p>{user_document}</p>
+          <p>{user_phone}</p>
         </StyledDiv>
         <Wrapper>
-          <Span bg={statusColors[status]}></Span>
-          <p>{status}</p>
+          <Span bg={statusColors[user_status]}></Span>
+          <p>{user_status}</p>
         </Wrapper>
         <Button
           onClick={() => {

@@ -32,6 +32,5 @@ export const editUserData = async (user, id) => {
         console.log(err);
       }
     });
-  console.log(putUserResult);
   return putUserResult;
 };

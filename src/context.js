@@ -36,7 +36,6 @@ const AppProvider = ({ children }) => {
 
   const submitUserEdit = async (user, id) => {
     const result = await editUserData(user, id);
-    console.log(result);
     dispatch({
       type: "SUBMIT_USER_EDITS",
       payload: result,
